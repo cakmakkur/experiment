@@ -1,0 +1,73 @@
+.page-container {
+  display: grid;
+  grid-template-columns: 600px 400px;
+  padding-left: 150px;
+}
+
+.left-container {
+  position: relative;
+  width: 520px;
+  aspect-ratio: 1/1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background-color: rgb(247, 247, 247);
+  top: 50px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  align-items: center;
+  text-align: center;
+
+}
+
+.buttonGeneral {
+  display: none;
+  border-radius: 40px;
+  border: none;
+  width: 80px;
+  aspect-ratio: 1;
+  background-color: rgb(176, 176, 176);
+}
+
+.right-container {
+  padding: 10px;
+  background-color: rgb(247, 247, 247);
+  position: relative;
+  border: 1px solid black;
+  right: 40px;
+  top: 50px;
+  border-radius: 10px;
+
+}
+
+.start-button {
+  position: relative;
+  top: 250px;
+  width: 200px;
+  height: 50px;
+  font-size: 30px;
+  border-radius: 30px;
+  border: 1px solid black;
+}
+
+.start-button:hover {
+  background-color: aliceblue;
+  cursor: pointer;
+}
+
+.buttonGeneral:hover {
+  cursor: pointer;
+}
+
+.results {
+  font-size: 30px;
+}
+
+.positiveCue, .negativeCue {
+  position: absolute;
+  font-size: 40px;
+  font-weight: 100;
+  color: rgb(0, 0, 0);
+  left: 245px;
+  display: none;
+}

@@ -41,45 +41,64 @@ function pickLocation () {
 
 // starting function
 let matchingButton = '';
+let matchingCue = '';
 
 function startGame () {
+  document.querySelectorAll('.buttonGeneral').forEach((button) => {
+    button.style.display = "none";});
 
   let location = pickLocation();
 
-  document.querySelectorAll('.buttonGeneral').forEach((button) => {
-    button.style.display = "none";
-    const buttonId = button.dataset.buttonId;
+  if (location < 8) {
+    document.querySelector('.positiveCue').style.display = "inline-block";
+    matchingCue = true;
+  } else if (location >= 8) {
+    document.querySelector('.negativeCue').style.display = "inline-block";
+    matchingCue = false;
+  }
+  setTimeout(buttonPart, 200);
 
-    if (buttonId === location) {
-      matchingButton = button;
-    }
-  });
-  matchingButton.style.display = "inline-block"
-  matchingButton.removeEventListener('click', makeClickable);
-  matchingButton.addEventListener('click', makeClickable)
+  function buttonPart () {
+    document.querySelector('.positiveCue').style.display = "none";
+    document.querySelector('.negativeCue').style.display = "none";
+    document.querySelectorAll('.buttonGeneral').forEach((button) => {
+      const buttonId = button.dataset.buttonId;
+  
+      if (buttonId === location) {
+        matchingButton = button;
+      }
+    });
+    matchingButton.style.display = "inline-block"
+    matchingButton.removeEventListener('click', makeClickable);
+    matchingButton.addEventListener('click', makeClickable)
+  }
 }
 
 function makeClickable () {
-  correctClicks += 1;
-  console.log(correctClicks);
+  if (matchingCue) {
+    correctClicks += 1;
+  } else {
+    falseClicks += 1;
+  }
   matchingButton.removeEventListener('click', makeClickable)
 }
 
 //on/off button
 let correctClicks = 0;
-
+let falseClicks = 0;
 let intervalId = null;
 let isOn = false;
 document.querySelector('.js-start-button').addEventListener('click', () => {
 
     if (!isOn) {
       document.querySelector('.results').innerHTML = ``;
-      intervalId = setInterval(startGame, 1000);
+      intervalId = setInterval(startGame, 1200);
       isOn = true;
     } else {
       clearInterval(intervalId);
-      document.querySelector('.results').innerHTML = `You clicked ${correctClicks} times on time`;
+      document.querySelector('.results').innerHTML = `You clicked ${correctClicks} times on time and ${falseClicks} times wrong`;
       correctClicks = 0;
+      falseClicks = 0;
       isOn = false;
     }
   })
