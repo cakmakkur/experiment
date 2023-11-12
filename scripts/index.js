@@ -1,4 +1,5 @@
-import { runAnimation1, runAnimation2, stopAnimation1, stopAnimation2, runAnimation3, stopAnimation3 } from "./indexAnimation.js";
+import { runAnimation1, runAnimation2, stopAnimation1, stopAnimation2, runAnimation3, stopAnimation3, graphAnimation, startAnimation } from "./indexAnimation.js";
+
 
 runAnimation1();
 
@@ -53,8 +54,10 @@ function arrowFunction () {
   } else if (leftPosition > -1600 && leftPosition <= -1200) {
     runAnimation3();
   } else if (leftPosition > -2000 && leftPosition <= -1600) {
-    console.log('showGraph')
-   } else if (leftPosition <= -2000) {
+    stopAnimation3();
+    graphAnimation();   
+  } else if (leftPosition <= -2000) {
+    startAnimation();
     nextButton.style.flex = '3';
     nextButton.innerHTML = `<p>START!</p>`;
   } 

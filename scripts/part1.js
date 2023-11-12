@@ -27,6 +27,7 @@ export function startGame () {
     
     document.querySelector('.results').innerHTML = `<p>This part is finished. <br><br>Click <strong>Next</strong> to continue.</p>`;
     startButton.innerHTML = `Next!`;
+    localStorage.setItem('scorePart1', JSON.stringify(correctClicksPart1));
     startButton.addEventListener('click', () => {
       window.location.href = "part2.html"
   });

@@ -3,6 +3,10 @@ import { pickLocation } from "./utils/operations.js";
 export let correctClicksPart2 = 0;
 export let falseClicksPart2 = 0;
 
+document.querySelector('.positiveCue').style.display = "none";
+document.querySelector('.negativeCue').style.display = "none";
+
+
 // starting function
 let matchingButton = '';
 let matchingCue = '';
@@ -12,15 +16,15 @@ function startGame () {
   count++;
   if (count < 15) {
   let location = pickLocation();
-  let cueLocation = pickLocation();
+  let cueDirection = pickLocation();
 
   document.querySelectorAll('.buttonGeneral').forEach((button) => {
     button.style.display = "none";});
 
-  if (cueLocation < 8) {
+  if (cueDirection < 8) {
     document.querySelector('.positiveCue').style.display = "inline-block";
     matchingCue = 'left';
-  } else if (cueLocation >= 8) {
+  } else if (cueDirection >= 8) {
     document.querySelector('.negativeCue').style.display = "inline-block";
     matchingCue = 'right';
   }
@@ -47,6 +51,8 @@ function startGame () {
 
   document.querySelector('.results').innerHTML = `<p>This part is finished. <br><br>Click <strong>Next</strong> to continue.</p>`;
   startButton.innerHTML = `Next!`;
+  localStorage.setItem('scorePart2correct', JSON.stringify(correctClicksPart2));
+  localStorage.setItem('scorePart2false', JSON.stringify(falseClicksPart2));
   startButton.addEventListener('click', () => {
     window.location.href = "part3.html"
 });
@@ -74,7 +80,7 @@ function rightClick (event) {
 const startButton = document.querySelector('.js-start-button');
 startButton.innerHTML = `Start`;
 const textBox = document.querySelector('.results');
-textBox.innerHTML = `Part 2 <br><br>After '+' leftclick on the button before it disappears.<br>After '-' leftclick on the button before it disappears.`;
+textBox.innerHTML = `Part 2 <br><br>After '+' leftclick on the button before it disappears.<br>After '-' rightclick on the button before it disappears.`;
 
 //on/off button
 let intervalId = null;
