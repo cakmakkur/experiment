@@ -17,6 +17,10 @@ document.querySelector('.arrowR').style.display = "none";
 document.querySelector('.positiveCue').style.display = "none";
 document.querySelector('.negativeCue').style.display = "none";
 
+window.addEventListener("contextmenu", function(event) {
+  event.preventDefault(); // Prevent the default context menu
+});
+
 function startGame () {
   count++;
 
@@ -39,8 +43,8 @@ function startGame () {
       matchingArrow = 'right';
     }
   
-    intervalCue = setTimeout(cuePart, 800);
-    intervalButton = setTimeout(buttonPart, 1600);
+    intervalCue = setTimeout(cuePart, 525);
+    intervalButton = setTimeout(buttonPart, 625);
 
     function cuePart () {
       document.querySelector('.arrowL').style.display = "none";
@@ -82,25 +86,24 @@ function startGame () {
     document.querySelector('.results').innerHTML = `<p>Experiment is finished.<br><br>Click <strong>Next</strong> to see the results.</p>`;
     startButton.innerHTML = `Finish`;
     startButton.addEventListener('click', () => {
-      window.location.href = "results.html"
+      window.location.href = "finalPage.html"
   });
   }
 }
 
 function leftClick () {
   if (matchingCue === 'left') {
-    correctClicks += 1;
+    correctClicksPart3 += 1;
   } else {
-    falseClicks += 1;
+    falseClicksPart3 += 1;
   }
   matchingButton.removeEventListener('click', leftClick)
 }
-function rightClick (event) {
-  event.preventDefault();
+function rightClick () {
   if (matchingCue === 'right') {
-    correctClicks += 1;
+    correctClicksPart3 += 1;
   } else {
-    falseClicks += 1;
+    falseClicksPart3 += 1;
   }
   matchingButton.removeEventListener('click', leftClick)
 }
@@ -113,8 +116,8 @@ textBox.innerHTML = `Part 3 <br><br>After '+' leftclick on the button before it 
 //on/off button
 let intervalId = null;
 startButton.addEventListener('click', () => {
-  intervalId = setInterval(startGame, 3000);
+  intervalId = setInterval(startGame, 1600);
   startButton.removeEventListener('click', () => {
-    intervalId = setInterval(startGame, 3000);
+    intervalId = setInterval(startGame, 1600);
 });
 })

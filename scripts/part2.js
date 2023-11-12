@@ -12,6 +12,11 @@ let matchingButton = '';
 let matchingCue = '';
 let count = 0;
 
+window.addEventListener("contextmenu", function(event) {
+  event.preventDefault(); // Prevent the default context menu
+});
+
+
 function startGame () {
   count++;
   if (count < 15) {
@@ -28,7 +33,7 @@ function startGame () {
     document.querySelector('.negativeCue').style.display = "inline-block";
     matchingCue = 'right';
   }
-  setTimeout(buttonPart, 200);
+  setTimeout(buttonPart, 100);
 
   function buttonPart () {
     document.querySelector('.positiveCue').style.display = "none";
@@ -61,18 +66,17 @@ function startGame () {
 
 function leftClick () {
   if (matchingCue === 'left') {
-    correctClicks += 1;
+    correctClicksPart2 += 1;
   } else {
-    falseClicks += 1;
+    falseClicksPart2 += 1;
   }
   matchingButton.removeEventListener('click', leftClick)
 }
-function rightClick (event) {
-  event.preventDefault();
+function rightClick () {
   if (matchingCue === 'right') {
-    correctClicks += 1;
+    correctClicksPart2 += 1;
   } else {
-    falseClicks += 1;
+    falseClicksPart2 += 1;
   }
   matchingButton.removeEventListener('click', leftClick)
 }

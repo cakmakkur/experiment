@@ -1,5 +1,12 @@
 import { pickLocation } from "./utils/operations.js";
 
+localStorage.removeItem('scorePart1');
+localStorage.removeItem('scorePart2correct');
+localStorage.removeItem('scorePart2false');
+localStorage.removeItem('scorePart3correct');
+localStorage.removeItem('scorePart3false');
+
+
 export let correctClicksPart1 = 0;
 
 // starting function
@@ -47,8 +54,8 @@ textBox.innerHTML = `Part 1 <br><br>Click on the button before it disappears...`
 //on/off button
 let intervalId = null;
 startButton.addEventListener('click', () => {
-      intervalId = setInterval(startGame, 1000);
+      intervalId = setInterval(startGame, 600);
       startButton.removeEventListener('click', () => {
-        intervalId = setInterval(startGame, 1000);
+        intervalId = setInterval(startGame, 600);
     });
   })

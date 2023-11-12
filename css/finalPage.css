@@ -1,0 +1,102 @@
+.left-container {
+  display: flex;
+  flex-direction: column; 
+  padding: 10px;
+  margin: 0px;
+  align-items: center;
+  text-align: center;
+}
+
+.right-container {
+  padding: 30px;
+  padding-top: 65px;
+  background-color: rgb(247, 247, 247);
+  position: relative;
+  border: 1px solid rgb(235, 235, 235);
+  box-shadow: 1px 1px 7px rgb(155, 155, 155);
+  right: 40px;
+  top: 50px;
+  border-radius: 10px;
+  display: block;
+}
+
+.left-container-graphbox {
+  position: relative;
+  flex: 1;
+  background-color: rgb(238, 238, 238);
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  width: 400px;
+  height: 200px;
+  left: 0px; 
+  top: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  align-items: end;
+  column-gap: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  box-shadow: -1px 1px 5px rgb(65, 64, 64);
+}
+
+.left-container-graph-info {
+  flex: 1;
+  position: relative;
+  width: 450px;
+  top: 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  padding-left: 30px;
+}
+
+
+.column1 {
+  position: relative;
+  bottom: 0;
+  height: 0px;
+  width: auto;
+  background-color: rgb(17, 146, 34);
+  transition: 0.5s;
+}
+.column2 {
+  position: relative;
+  bottom: 0;
+  height: 0px;
+  width: auto;
+  transition: 0.5s;
+  background-color: rgb(17, 146, 34);
+}
+.column3 {
+  position: relative;
+  bottom: 0;
+  height: 0px;
+  width: auto;
+  transition: 0.5s;
+  background-color: rgb(214, 0, 0);
+}
+.column4 {
+  position: relative;
+  bottom: 0;
+  height: 0px;
+  width: auto;
+  background-color: rgb(17, 146, 34);
+  transition: 0.5s;
+}
+
+.column5 {
+  position: relative;
+  bottom: 0;
+  height: 0px;
+  width: auto;
+  background-color: rgb(214, 0, 0);
+  transition: 0.5s;
+}
+
+.left-container-measure {
+  position: absolute;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  left: 20px;
+  top: 69px;
+  height: 280px;
+}

@@ -269,7 +269,7 @@ export function graphAnimation () {
 </div>
   `;
 
-  setTimeout(animation, 1000)
+  setTimeout(animation, 200)
 
   function animation () {
     document.querySelector('.column1').style.height = '90px';
