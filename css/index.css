@@ -1,9 +1,53 @@
+.headerContainer {
+  position: sticky;
+  top: 0px;
+  width: 100%;
+  height: 4em;
+  background-color: rgb(236, 236, 236);
+  border-bottom: 1px solid rgb(85, 85, 85);
+  box-shadow: 1px 1px 5px rgb(107, 107, 107);
+
+  z-index: 100;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  min-width: 100%;
+  align-items: center;
+  position: absolute;
+  bottom: 0.5em;
+}
+
+.headerLeftSide  {
+  position: relative;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  text-align: start;
+  padding-left: 2%;
+  font-size: 0.8em;
+}
+
+.headerRightSide {
+  position: relative;
+  flex: 1;
+  flex-grow: 1;
+  text-align: end;
+  padding-right: 2%;
+  font-size: 1.2em;
+}
+.headerRightSide a {
+  padding-left: 1em;
+  text-decoration: none;
+  color: rgb(0, 0, 30);
+}
+
 .page-container {
   display: grid;
   grid-template-columns: 600px 400px;
   padding-left: 150px;
   z-index: 10;
-  background: rgb(230, 229, 229);
 }
 
 .left-container {
@@ -52,7 +96,8 @@
   padding: 10px;
   background-color: rgb(247, 247, 247);
   position: relative;
-  border: 1px solid black;
+  border: 1px solid rgb(235, 235, 235);
+  box-shadow: 1px 1px 7px rgb(155, 155, 155);
   right: 40px;
   top: 50px;
   border-radius: 10px;
@@ -66,6 +111,33 @@
   background-color: transparent;
   width: 370px;
   overflow: hidden;
+  border: 1px solid darkgray;
+}
+
+.textSlideBox {
+  z-index: 10;
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(6, 370px);
+  column-gap: 30px;
+  /* 350px to the left slide */
+  background-color: rgb(245, 245, 245);
+  transition: 0.2s;
+  transition-timing-function: ease-in-out;
+  height: 100%;
+}
+
+.textSlideBox p {
+  display: block;
+  padding-left: 20px;
+  padding-top: 30px;
+  line-height: 25px;
+}
+
+.text6 {
+  margin-top: 80px;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .arrowBox {
@@ -97,31 +169,4 @@
   font-size: 23px;
   font-weight: 500;
   background-color: rgba(203, 252, 200, 0.64);
-}
-
-.textSlideBox {
-  z-index: 10;
-  position: absolute;
-  display: grid;
-  grid-template-columns: repeat(6, 370px);
-  column-gap: 30px;
-  /* 350px to the left slide */
-  height: 90%;
-  background-color: rgb(245, 245, 245);
-  margin-top: 5%;
-  transition: 0.2s;
-  transition-timing-function: ease-in-out;
-}
-
-.textSlideBox p {
-  display: block;
-  padding-left: 20px;
-  padding-top: 30px;
-  line-height: 25px;
-}
-
-.text6 {
-  margin-top: 80px;
-  font-size: 20px;
-  font-weight: 700;
 }

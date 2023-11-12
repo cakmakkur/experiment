@@ -1,85 +1,61 @@
-// this function returns the nextLocationId
-let nextLocationId = '';
+import { runAnimation1, runAnimation2, stopAnimation1, stopAnimation2, runAnimation3, stopAnimation3 } from "./indexAnimation.js";
 
-function pickLocation () {
-  const randomNumber = Math.random();
-  if (randomNumber >= 0 && randomNumber <= 1/16 ) {
-    nextLocationId = '1'
-  } else if (randomNumber > 1/16 && randomNumber <= 2 / 16 ) {
-    nextLocationId = '2'
-  } else if (randomNumber > 2/16 && randomNumber <= 3 / 16 ) {
-    nextLocationId = '3'
-  } else if (randomNumber > 3/16 && randomNumber <= 4 / 16 ) {
-    nextLocationId = '4'
-  } else if (randomNumber > 4/16 && randomNumber <= 5 / 16)  {
-    nextLocationId = '5'
-  } else if (randomNumber > 5/16 && randomNumber <= 6 / 16)  {
-    nextLocationId = '6'
-  } else if (randomNumber > 6/16 && randomNumber <= 7 / 16 ) {
-    nextLocationId = '7'
-  } else if (randomNumber > 7/16 && randomNumber <= 8 / 16 ) {
-    nextLocationId = '8'
-  } else if (randomNumber > 8/16 && randomNumber <= 9 / 16 ) {
-    nextLocationId = '9'
-  } else if (randomNumber > 9/16 && randomNumber <= 10 / 16 ) {
-    nextLocationId = '10'
-  } else if (randomNumber > 10/16 && randomNumber <= 11 / 16 ) {
-    nextLocationId = '11'
-  } else if (randomNumber > 11/16 && randomNumber <= 12 / 16 ) {
-    nextLocationId = '12'
-  } else if (randomNumber > 12/16 && randomNumber <= 13 / 16 ) {
-    nextLocationId = '13'
-  } else if (randomNumber > 13/16 && randomNumber <= 14 / 16 ) {
-    nextLocationId = '14'
-  } else if (randomNumber > 14/16 && randomNumber <= 15 / 16 ) {
-    nextLocationId = '15'
-  } else if (randomNumber > 15/16 && randomNumber <= 1 ) {
-    nextLocationId = '16'
+runAnimation1();
+
+let previousButton = document.querySelector('.previousButton')
+let nextButton = document.querySelector('.nextButton')
+
+previousButton.disabled = true;
+nextButton.innerHTML = `<i
+    class="fa-solid fa-arrow-right fa-2xl"
+    style="color: #0f131a"
+  ></i>`;
+
+
+
+// TEXT-BOX POSITION
+let leftPosition = 0;
+
+nextButton.addEventListener('click', () => {
+  if (leftPosition === -2000) {
+    window.location.href = "part1.html"
+  } else {
+    document.querySelector('.textSlideBox').style.left = (leftPosition - 400) + "px";
+    leftPosition -= 400;
+    arrowFunction();
   }
-  return nextLocationId;
-  }
+})
+previousButton.addEventListener('click', () => {
+  document.querySelector('.textSlideBox').style.left = (leftPosition + 400) + "px"
+  leftPosition += 400;
+  arrowFunction();
+})
 
-// starting function
-let matchingButton = '';
-
-function startGame () {
-
-  let location = pickLocation();
-
-  document.querySelectorAll('.buttonGeneral').forEach((button) => {
-    button.style.display = "none";
-    const buttonId = button.dataset.buttonId;
-
-    if (buttonId === location) {
-      matchingButton = button;
-    }
-  });
-  matchingButton.style.display = "inline-block"
-  matchingButton.removeEventListener('click', makeClickable);
-  matchingButton.addEventListener('click', makeClickable)
+//BUTTON ROLES
+function arrowFunction () {
+    stopAnimation1();
+    stopAnimation2();
+    stopAnimation3();
+    
+    nextButton.style.flex = '1';
+    nextButton.innerHTML = `<i
+    class="fa-solid fa-arrow-right fa-2xl"
+    style="color: #0f131a"
+  ></i>`;
+  if (leftPosition === 0) {
+    previousButton.disabled = true;
+  } else if (leftPosition > -800 && leftPosition < 0) {
+    previousButton.disabled = false;
+    
+    runAnimation1();
+  } else if (leftPosition > -1200 && leftPosition <= -800) {
+    runAnimation2();
+  } else if (leftPosition > -1600 && leftPosition <= -1200) {
+    runAnimation3();
+  } else if (leftPosition > -2000 && leftPosition <= -1600) {
+    console.log('showGraph')
+   } else if (leftPosition <= -2000) {
+    nextButton.style.flex = '3';
+    nextButton.innerHTML = `<p>START!</p>`;
+  } 
 }
-
-function makeClickable () {
-  correctClicks += 1;
-  console.log(correctClicks);
-  matchingButton.removeEventListener('click', makeClickable)
-}
-
-//on/off button
-let correctClicks = 0;
-
-let intervalId = null;
-let isOn = false;
-document.querySelector('.js-start-button').addEventListener('click', () => {
-
-    if (!isOn) {
-      document.querySelector('.results').innerHTML = ``;
-      intervalId = setInterval(startGame, 1000);
-      isOn = true;
-    } else {
-      clearInterval(intervalId);
-      document.querySelector('.results').innerHTML = `You clicked ${correctClicks} times on time`;
-      correctClicks = 0;
-      isOn = false;
-    }
-  })

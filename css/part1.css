@@ -55,10 +55,6 @@
   cursor: pointer;
 }
 
-.buttonGeneral:hover {
-  cursor: pointer;
-}
-
 .results {
   font-size: 30px;
 }
@@ -69,5 +65,27 @@
   font-weight: 100;
   color: rgb(0, 0, 0);
   left: 245px;
+}
+
+
+.arrowL {
+  rotate: 180deg;
   display: none;
+
+}
+
+.arrowR {
+  display: none;
+
+}
+
+.arrowL, .arrowR {
+  position: absolute;
+  font-size: 40px;
+  font-weight: 100;
+  color: rgb(0, 0, 0);
+  top: 224px;
+  left: 220px;
+  width: 75px;
+
 }
