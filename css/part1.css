@@ -53,10 +53,10 @@
 
 
 .start-button {
-  position: relative;
+  position: absolute;
   top: 400px;
   width: 200px;
-  height: 60px;
+  height: 50px;
   font-size: 30px;
   border: 1px solid black;
   margin: 0px 10px 0px 15px;
@@ -69,7 +69,14 @@
 }
 
 .results {
-  font-size: 30px;
+    position: relative;
+    top: 25px;
+    padding-left: 10px;
+}
+
+.results p{
+  display: inline-block;
+  font-size: 25px;
 }
 
 .positiveCue, .negativeCue {

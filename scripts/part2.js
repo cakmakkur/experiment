@@ -1,10 +1,16 @@
 import { pickLocation } from "./utils/operations.js";
 
+export let correctClicksPart2 = 0;
+export let falseClicksPart2 = 0;
+
 // starting function
 let matchingButton = '';
 let matchingCue = '';
+let count = 0;
 
 function startGame () {
+  count++;
+  if (count < 15) {
   let location = pickLocation();
   let cueLocation = pickLocation();
 
@@ -36,6 +42,15 @@ function startGame () {
     matchingButton.addEventListener('click', leftClick);
     matchingButton.addEventListener('contextmenu', rightClick);
   }
+} else {
+  clearInterval(intervalId);
+
+  document.querySelector('.results').innerHTML = `<p>This part is finished. <br><br>Click <strong>Next</strong> to continue.</p>`;
+  startButton.innerHTML = `Next!`;
+  startButton.addEventListener('click', () => {
+    window.location.href = "part3.html"
+});
+}
 }
 
 function leftClick () {
@@ -56,22 +71,16 @@ function rightClick (event) {
   matchingButton.removeEventListener('click', leftClick)
 }
 
-//on/off button
-let correctClicks = 0;
-let falseClicks = 0;
-let intervalId = null;
-let isOn = false;
-document.querySelector('.js-start-button').addEventListener('click', () => {
+const startButton = document.querySelector('.js-start-button');
+startButton.innerHTML = `Start`;
+const textBox = document.querySelector('.results');
+textBox.innerHTML = `Part 2 <br><br>After '+' leftclick on the button before it disappears.<br>After '-' leftclick on the button before it disappears.`;
 
-    if (!isOn) {
-      document.querySelector('.results').innerHTML = ``;
-      intervalId = setInterval(startGame, 1200);
-      isOn = true;
-    } else {
-      clearInterval(intervalId);
-      document.querySelector('.results').innerHTML = `You clicked ${correctClicks} times on time and ${falseClicks} times wrong`;
-      correctClicks = 0;
-      falseClicks = 0;
-      isOn = false;
-    }
-  })
+//on/off button
+let intervalId = null;
+startButton.addEventListener('click', () => {
+  intervalId = setInterval(startGame, 1000);
+  startButton.removeEventListener('click', () => {
+    intervalId = setInterval(startGame, 1000);
+});
+})
